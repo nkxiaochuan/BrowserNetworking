@@ -6,7 +6,7 @@
 	<display-name>BrowserNetworking</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:applicationContext*.xml, spring-servlet.xml</param-value>
+		<param-value>classpath:browser-network-context.xml, spring-servlet.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
