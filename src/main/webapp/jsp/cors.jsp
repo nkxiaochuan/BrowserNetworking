@@ -20,7 +20,8 @@
 	
 	var cors_xhr = new XMLHttpRequest();
 	cors_xhr.withCredentials = true;
-	cors_xhr.open('GET','http://localhost:8080/v1/xhr/hello');
+	cors_xhr.open('GET','http://stackoverflow.com/questions/19661157/how-to-add-header-data-in-xmlhttprequest-when-using-formdata');
+	cors_xhr.setRequestHeader("Access-Control-Allow-Origin","*");
 	cors_xhr.onload=function(){
 		var responseText = xhr.responseText;
 		alert(responseText);
