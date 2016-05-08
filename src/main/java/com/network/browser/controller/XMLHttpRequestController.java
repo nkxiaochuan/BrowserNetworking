@@ -46,13 +46,12 @@ public class XMLHttpRequestController {
 		return "ok";
 	}
 	
-	@SuppressWarnings("static-access")
 	@RequestMapping(value="/poll", method=RequestMethod.GET)
 	@ResponseBody
 	public String poll(HttpServletRequest request, HttpServletResponse response){
 		System.out.println("start---");
 		try {
-			Thread.currentThread().sleep(10000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

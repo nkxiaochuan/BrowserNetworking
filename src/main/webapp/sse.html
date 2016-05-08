@@ -7,7 +7,7 @@
 <body>
 	<p>hello world!</p>
 	<div>
-		<h2>Server-Send Events</h2>
+		<p id="sse">Server-Send Events</p>
 		
 	</div>
 </body>
@@ -18,18 +18,10 @@ if (!window.EventSource) {
 var source = new EventSource("/v1/sse/stream");
 source.onopen = function () {console.log('1')};
 source.onerror = function () {console.log('1')};
-source.addEventListener("foo", function (event) {
-	processFoo(event.data);
-});
-source.onmessage = function (event) {
-	log_message(event.id, event.data);
-	if (event.id == "CLOSE") {
-		source.close();
-	}
-}
+source.addEventListener("message", function (event) {
+	document.getElementById("sse").innerHTML += "\n" + event.data;
+},false);
 
-function processFoo(event.data){
-	alert(event.data);
-}
+
 </script>
 </html>
