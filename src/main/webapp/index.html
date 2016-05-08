@@ -5,6 +5,18 @@
 <title>Browser Networking</title>
 </head>
 <body>
-<p>hello world!</p>
+	<p>hello world!</p>
+	<div>
+		<h2>XMLHttpRequest</h2>
+		<button onclick="XHRHttpRquest.xhrGet()">Same-origin</button>
+		<button onclick="XHRHttpRquest.xhrCors()">Cross-origin</button>
+		<button onclick="XHRHttpRquest.xhrDownload()">Download-blob</button>
+		<button onclick="XHRHttpRquest.xhrUpload()">upload</button>
+		<button onclick="XHRHttpRquest.monitor()">monitor</button>
+		<button onclick="XHRHttpRquest.streamingData()">stream-data</button>
+		<a href="/page/xhrpoll.html">poll</a>
+		<button onclick="XHRHttpRquest.checkUpdatesLong()">long-poll</button>
+	</div>
 </body>
+<script type="text/javascript" src="/js/xhr.js"></script>
 </html>

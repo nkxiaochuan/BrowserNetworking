@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Browser Networking</title>
+</head>
+<body>
+	<p>hello world!</p>
+	<div>
+		<h2>WebSocket</h2>
+		
+	</div>
+</body>
+<script type="text/javascript">
+var ws = new WebSocket('ws://localhost:8080/v1/ws/socket');
+ws.onerror = function (error) {alert('error')}
+ws.onclose = function () {alert('close')}
+ws.onopen = function () {
+	ws.send("Connection established. Hello server!");
+}
+ws.onmessage = function(msg) {
+	if(msg.data instanceof Blob) {
+		processBlob(msg.data);
+	} else {
+		processText(msg.data);
+	}
+}
+
+function processText(msg){
+	console.log(msg);
+}
+</script>
+</html>

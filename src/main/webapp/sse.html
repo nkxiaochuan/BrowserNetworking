@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Browser Networking</title>
+</head>
+<body>
+	<p>hello world!</p>
+	<div>
+		<h2>Server-Send Events</h2>
+		
+	</div>
+</body>
+<script type="text/javascript">
+if (!window.EventSource) {
+	alert("can't use event source");
+}
+var source = new EventSource("/v1/sse/stream");
+source.onopen = function () {console.log('1')};
+source.onerror = function () {console.log('1')};
+source.addEventListener("foo", function (event) {
+	processFoo(event.data);
+});
+source.onmessage = function (event) {
+	log_message(event.id, event.data);
+	if (event.id == "CLOSE") {
+		source.close();
+	}
+}
+
+function processFoo(event.data){
+	alert(event.data);
+}
+</script>
+</html>
