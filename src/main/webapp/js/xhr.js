@@ -126,11 +126,11 @@ XHRHttpRquest.streamingData=function(){
 }
 
 XHRHttpRquest.checkUpdates=function() {
-	alert("start");
+	console.log("start");
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/v1/xhr/poll');
 	xhr.onload = function() {
-		alert("end");
+		console.log("end");
 	};
 	xhr.send();
 }
@@ -140,8 +140,7 @@ XHRHttpRquest.checkUpdatesLong=function() {
 	xhr.open('GET', '/v1/xhr/poll');
 	xhr.onload = function() {
 		if (this.status == 200){
-			var input = document.createElement('input');
-			input.value = this.response;
+			console.log("get data back!");
 			input.onload = function(){
 			}
 			document.body.appendChild(input);
