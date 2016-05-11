@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
-       xmlns:mvc="http://www.springframework.org/schema/mvc" 
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-       xmlns:context="http://www.springframework.org/schema/context" 
-       xmlns:p="http://www.springframework.org/schema/p" 
-       xsi:schemaLocation="http://www.springframework.org/schema/mvc
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:websocket="http://www.springframework.org/schema/websocket" 
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
                 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		                http://www.springframework.org/schema/context
 		                http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		          		http://www.springframework.org/schema/beans
-			          	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	
-	<mvc:resources mapping="/page/**" location="/page/"/>
-	<mvc:resources mapping="/images/**" location="/images/"/>
-	<mvc:resources mapping="/js/**" location="/js/"/>
-	<mvc:resources mapping="/**" location="/"/>
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			          	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			          	http://www.springframework.org/schema/websocket
+			          	http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+	<mvc:resources mapping="/page/**" location="/page/" />
+	<mvc:resources mapping="/images/**" location="/images/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/**" location="/" />
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/jsp/" />
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2" />
@@ -24,16 +26,25 @@
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="prefixJson" value="false" />
 		<property name="supportedMediaTypes" value="application/json;charset=UTF-8" />
-	</bean> 
-	
+	</bean>
+
 	<context:component-scan base-package="com.network.browser.controller" />
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<ref bean="jsonConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10240000"></property>
 	</bean>
+
+	<bean id="websocket" class="com.network.browser.controller.WebSocketController"/> 
 	
+	<websocket:handlers>
+		<websocket:mapping path="/websocket" handler="websocket" />
+		<websocket:handshake-interceptors>
+			<bean class="com.network.browser.controller.HandshakeInterceptor" />
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
 </beans>

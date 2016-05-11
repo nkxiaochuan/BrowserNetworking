@@ -12,7 +12,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-var ws = new WebSocket('ws://localhost:8080/v1/ws/socket');
+var ws = new WebSocket('ws://localhost:8082/websocket');
 ws.onerror = function (error) {alert('error')}
 ws.onclose = function () {alert('close')}
 ws.onopen = function () {
