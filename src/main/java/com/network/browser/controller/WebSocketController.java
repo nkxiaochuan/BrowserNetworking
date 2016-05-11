@@ -8,10 +8,10 @@ public class WebSocketController extends TextWebSocketHandler {
 
 	@Override  
     protected void handleTextMessage(WebSocketSession session,  
-            TextMessage message) throws Exception {  
+            TextMessage message) throws Exception {
         super.handleTextMessage(session, message);  
         System.out.println(message.toString());
-        TextMessage returnMessage = new TextMessage(message.getPayload()+" received at server");  
+        TextMessage returnMessage = new TextMessage(message.getPayload()+" \r\n hello client!  by server");  
         session.sendMessage(returnMessage);  
     }
 }
